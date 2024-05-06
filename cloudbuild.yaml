@@ -1,20 +1,11 @@
 steps:
   # Step to clone code from GitHub repository
   - name: 'gcr.io/cloud-builders/git'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        git clone https://github.com/obeki/cloud-function-test.git project_files
+    args:[ 'clone', 'https://github.com/obeki/cloud-function-test.git', '/repo']
 
-  # Step to zip the code
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        cd project_files
-        zip -r ../project_files.zip .
+  - name: 'bash'
+    args: ['-c', 'cd /repo && zip -r my_archive.zip *']
+
 
 
   # Step to copy the zipped code to Cloud Storage bucket
@@ -23,7 +14,7 @@ steps:
     args:
       - '-c'
       - |
-        gsutil cp project_files.zip gs://deuteronomy/project_files.zip
+        gsutil cp repo.zip gs://deuteronomy/project_files.zip
 
 # Optional: Define substitutions to pass variables to the build
 substitutions:
