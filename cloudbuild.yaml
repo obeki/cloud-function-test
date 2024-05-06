@@ -28,7 +28,7 @@ steps:
         #pwd
         #cd ..
         ls -l
-        gsutil cp cloud-function-test/ssss.zip gs://deuteronomy/project_files.zip
+        gsutil cp cloud-function-test/ssss.zip gs://deuteronomy/my_project_files.zip
 
 # Optional: Define substitutions to pass variables to the build
 substitutions:
