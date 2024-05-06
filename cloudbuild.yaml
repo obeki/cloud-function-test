@@ -1,7 +1,7 @@
 steps:
   # Step to clone code from GitHub repository
   - name: 'gcr.io/cloud-builders/git'
-    args:[ 'clone', 'https://github.com/obeki/cloud-function-test.git', '/repo']
+    args: ['clone', 'https://github.com/obeki/cloud-function-test.git', '/repo']
 
   - name: 'bash'
     args: ['-c', 'cd /repo && zip -r my_archive.zip *']
