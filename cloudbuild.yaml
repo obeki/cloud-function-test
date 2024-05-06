@@ -8,8 +8,11 @@ steps:
     args:
       - '-c'
       - |
+        ls
         cd cloud-function-test
         zip -r ssss.zip .
+        ls
+        pwd
 
  # - name: 'bash'
  #   args: ['-c', 'cd cloud-function-test && zip -r my_archive.zip *']
@@ -22,9 +25,9 @@ steps:
     args:
       - '-c'
       - |
-        pwd
-        cd ..
-        ls -l
+        #pwd
+        #cd ..
+        #ls -l
         gsutil cp ssss.zip gs://deuteronomy/project_files.zip
 
 # Optional: Define substitutions to pass variables to the build
