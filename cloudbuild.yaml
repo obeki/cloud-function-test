@@ -8,12 +8,13 @@ steps:
         git clone https://github.com/obeki/cloud-function-test.git project_files
 
   # Step to zip the code
-  - name: 'gcr.io/cloud-builders/zip'
+- name: 'gcr.io/cloud-builders/bash'
     entrypoint: 'bash'
     args:
-      - '-r'
-      - 'project_files.zip'
-      - 'project_files'
+      - '-c'
+      - |
+        cd project_files
+        zip -r ../project_files.zip .
 
 
   # Step to copy the zipped code to Cloud Storage bucket
