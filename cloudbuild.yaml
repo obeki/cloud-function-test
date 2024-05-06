@@ -22,11 +22,9 @@ steps:
     args:
       - '-c'
       - |
-        gsutil cp project_files.zip gs://santabarta/project_files.zip
+        gsutil cp project_files.zip gs://deuteronomy/project_files.zip
 
 # Optional: Define substitutions to pass variables to the build
 substitutions:
-  _BUCKET_NAME: santabarta
+  _BUCKET_NAME: deuteronomy
 
-options:
-  logging: CLOUD_LOGGING_ONLY
