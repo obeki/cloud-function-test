@@ -8,7 +8,7 @@ steps:
         git clone https://github.com/obeki/cloud-function-test.git project_files
 
   # Step to zip the code
-  - name: 'gcr.io/cloud-builders/bash'
+  - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
       - '-c'
