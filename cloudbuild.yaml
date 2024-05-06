@@ -3,8 +3,16 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/obeki/cloud-function-test.git']
 
-  - name: 'bash'
-    args: ['-c', 'cd cloud-function-test && zip -r my_archive.zip *']
+  - name: 'gcr.io/insurance-proj-1/us-central1-docker.pkg.dev/insurance-proj-1/cloud-builder/zipper'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        cd cloud-function-test
+        zip -r project_files.zip .
+
+ # - name: 'bash'
+ #   args: ['-c', 'cd cloud-function-test && zip -r my_archive.zip *']
 
 
 
