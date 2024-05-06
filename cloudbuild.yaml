@@ -22,6 +22,7 @@ steps:
     args:
       - '-c'
       - |
+        pwd
         cd ..
         ls -l
         gsutil cp ssss.zip gs://deuteronomy/project_files.zip
