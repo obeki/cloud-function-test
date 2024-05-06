@@ -1,16 +1,31 @@
 steps:
   # Step to clone code from GitHub repository
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone','https://github.com/obeki/cloud-function-test.git','project_files']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        git clone https://github.com/your-username/your-repository.git project_files
 
   # Step to zip the code
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'source', 'archive', 'project_files.zip', '--source', 'project_files', '--entry-point', 'hello_gcs']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud functions source archive project_files.zip --source project_files --entry-point hello_gcs
 
   # Step to copy the zipped code to Cloud Storage bucket
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', 'project_files.zip', 'gs://santabarta/project_files.zip']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gsutil cp project_files.zip gs://santabarta/project_files.zip
 
 # Optional: Define substitutions to pass variables to the build
 substitutions:
   _BUCKET_NAME: santabarta
+
+options:
+  logging: CLOUD_LOGGING_ONLY
