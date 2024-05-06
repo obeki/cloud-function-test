@@ -3,8 +3,9 @@ import functions_framework
 # Triggered by a change in a storage bucket
 @functions_framework.cloud_event
 def hello_gcs(cloud_event):
+    # pull data from the cloud event
     data = cloud_event.data
-
+    print(data)
     event_id = cloud_event["id"]
     event_type = cloud_event["type"]
 
