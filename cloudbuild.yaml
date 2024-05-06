@@ -5,15 +5,16 @@ steps:
     args:
       - '-c'
       - |
-        git clone https://github.com/your-username/your-repository.git project_files
+        git clone https://github.com/obeki/cloud-function-test.git project_files
 
   # Step to zip the code
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/zip'
     entrypoint: 'bash'
     args:
-      - '-c'
-      - |
-        gcloud functions source archive project_files.zip --source project_files --entry-point hello_gcs
+      - '-r'
+      - 'project_files.zip'
+      - 'project_files'
+
 
   # Step to copy the zipped code to Cloud Storage bucket
   - name: 'gcr.io/cloud-builders/gsutil'
