@@ -22,7 +22,7 @@ steps:
     args:
       - '-c'
       - |
-        gsutil cp repo.zip gs://deuteronomy/project_files.zip
+        gsutil cp project_files.zip gs://deuteronomy/project_files.zip
 
 # Optional: Define substitutions to pass variables to the build
 substitutions:
