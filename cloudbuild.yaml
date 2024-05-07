@@ -8,11 +8,11 @@ steps:
     args:
       - '-c'
       - |
-        ls
+        #ls
         cd cloud-function-test
         zip -r ssss.zip .
-        ls
-        pwd
+        #ls
+        #pwd
 
  # - name: 'bash'
  #   args: ['-c', 'cd cloud-function-test && zip -r my_archive.zip *']
@@ -27,9 +27,27 @@ steps:
       - |
         #pwd
         #cd ..
-        ls -l
-        gsutil cp cloud-function-test/ssss.zip gs://deuteronomy/my_project_files.zip
+        #ls -l
+        gsutil cp cloud-function-test/ssss.zip gs://deuteronomy/project_files.zip
 
+
+  # Step to deploy the Cloud Function to Cloud Function Gen 2
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud functions deploy my-cloud-function \
+          --entry-point=hello_gcs \
+          --runtime=python311 \
+          --trigger-resource=bucket-gen-1 \
+          --trigger-event=google.cloud.storage.object.v1.finalized \
+          --source=gs://deuteronomy/project_files.zip \
+          --region=us-central1 \
+          --project=insurance-proj-1
+          --gen2
+
+          
 # Optional: Define substitutions to pass variables to the build
 substitutions:
   _BUCKET_NAME: deuteronomy
