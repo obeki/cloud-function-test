@@ -44,7 +44,7 @@ steps:
           --trigger-event=google.cloud.storage.object.v1.finalized \
           --source=gs://deuteronomy/project_files.zip \
           --region=us-central1 \
-          --project=insurance-proj-1
+          --project=insurance-proj-1 \
           --gen2
 
           
